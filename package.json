@@ -309,7 +309,7 @@
     "react-stripe-elements": "^6.1.2",
     "react-visibility-sensor": "^5.1.1",
     "reactstrap": "^8.4.1",
-    "recharts": "^1.8.5",
+    "recharts": "^2.0.2",
     "regexpp": "^3.1.0",
     "rxjs": "^6.6.3",
     "sanitize-html": "^1.26.0",
