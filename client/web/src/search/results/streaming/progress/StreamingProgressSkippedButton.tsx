@@ -13,7 +13,10 @@ export const StreamingProgressSkippedButton: React.FunctionComponent<Pick<
     const [isOpen, setIsOpen] = useState(false)
     const toggleOpen = useCallback(() => setIsOpen(previous => !previous), [setIsOpen])
 
-    const skippedWithWarning = useMemo(() => progress.skipped.some(skipped => skipped.severity === 'warn'), [progress])
+    const skippedWithWarningOrError = useMemo(
+        () => progress.skipped.some(skipped => skipped.severity === 'warn' || skipped.severity === 'error'),
+        [progress]
+    )
 
     const onSearchAgainWithPopupClose = useCallback(
         (filters: string[]) => {
@@ -31,13 +34,13 @@ export const StreamingProgressSkippedButton: React.FunctionComponent<Pick<
                         className={classNames(
                             'streaming-progress__skipped mb-0 ml-2 d-flex align-items-center text-decoration-none',
                             {
-                                'streaming-progress__skipped--warning': skippedWithWarning,
+                                'streaming-progress__skipped--warning': skippedWithWarningOrError,
                             }
                         )}
                         caret={true}
                         color="link"
                     >
-                        {skippedWithWarning ? (
+                        {skippedWithWarningOrError ? (
                             <AlertCircleIcon className="mr-2 icon-inline" />
                         ) : (
                             <InformationOutlineIcon className="mr-2 icon-inline" />
